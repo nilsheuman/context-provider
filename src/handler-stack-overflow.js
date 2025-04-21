@@ -31,6 +31,26 @@ function getQuestionId(url) {
   return m && m[1];
 }
 
+function handleStackOverflowResponse(data) {
+  const acceptedAnswers = data.items.filter((item) => item.is_accepted);
+  acceptedAnswers.sort((a, b) => b.score - a.score);
+  console.log(
+    `Got ${acceptedAnswers.length} accepted of ${data.items.length} answers`
+  );
+  return acceptedAnswers;
+}
+
+async function queryStackOverflow(questionId) {
+  const url = stackOverflowAnswersUrl.replace("${questionId}", questionId);
+  console.log(`Fetching answers for questionId: ${questionId}`);
+  const response = await fetch(url, { method: "GET" })
+    .then((response) => response.json())
+    .then((data) => handleStackOverflowResponse(data))
+    .catch((error) => console.error("Error:", error)); // TODO: handle error
+
+  return response;
+}
+
 async function handleStackOverflow(window, question, maxItems) {
   const query = encodeURIComponent(`${siteUrlPath}${question}`);
   const url = `${googleUrl}${query}`;
@@ -80,26 +100,6 @@ async function handleStackOverflow(window, question, maxItems) {
     return answerContexts;
   }
 }
-
-const handleStackOverflowResponse = (data) => {
-  const acceptedAnswers = data.items.filter((item) => item.is_accepted);
-  acceptedAnswers.sort((a, b) => b.score - a.score);
-  console.log(
-    `Got ${acceptedAnswers.length} accepted of ${data.items.length} answers`
-  );
-  return acceptedAnswers;
-};
-
-const queryStackOverflow = async (questionId) => {
-  const url = stackOverflowAnswersUrl.replace("${questionId}", questionId);
-  console.log(`Fetching answers for questionId: ${questionId}`);
-  const response = await fetch(url, { method: "GET" })
-    .then((response) => response.json())
-    .then((data) => handleStackOverflowResponse(data))
-    .catch((error) => console.error("Error:", error)); // TODO: handle error
-
-  return response;
-};
 
 module.exports = {
   handleStackOverflow,

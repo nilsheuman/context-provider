@@ -1,4 +1,4 @@
-# Electron Search
+# Context Provider
 
 Simple Electron app for interacting with websites to populate the context to use with [continue.dev](https://github.com/continuedev/continue/) in [VSCode](https://code.visualstudio.com/).
 
@@ -37,7 +37,7 @@ The Stack Overflow context fetcher is doing the following:
 
 To use it, the config for continue.dev needs to be updated, then the app should be started.
 
-The app the google results that are loaded, so you can handle any potential captchas.
+The app will show the page where google results that are loaded, so you can handle any potential captchas.
 
 Note: Stack Exchange have a limit of 300 request per day.
 

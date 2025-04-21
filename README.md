@@ -28,11 +28,18 @@ Start the App
 
 ## Overview
 
-Searching on google, parsing the results and for each result, queries the Stack Exchange API for the answers. It limits searches to the stackoverflow domain with `site: site:stackoverflow.com`. It only returns accepted answers.
+The Stack Overflow context fetcher is doing the following:
+- Searching on Google with `site: site:stackoverflow.com`. Then parses the results to JSON.
+- For each result, queries the Stack Exchange API for the answers and filters on accepted answers.
+- Returns the answers in a format compatible with continue.dev context
 
-To use it, the config for continue.dev needs to be updated, then the app should be started. It will show the web pages that are loaded, so you can handle any captchas the shows up.
+## Using
 
-Stack Exchange have a limit of 300 request per day.
+To use it, the config for continue.dev needs to be updated, then the app should be started.
+
+The app the google results that are loaded, so you can handle any potential captchas.
+
+Note: Stack Exchange have a limit of 300 request per day.
 
 ## Continue.dev Config
 

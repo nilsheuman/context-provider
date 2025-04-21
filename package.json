@@ -1,0 +1,21 @@
+{
+  "name": "context-provider",
+  "version": "0.1.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["vscode", "continue.dev", "context-provider", "stack overflow", "electron"],
+  "author": "Nils Heuman",
+  "license": "MIT",
+  "description": "Electron app for providing context to continue.dev",
+  "devDependencies": {
+    "electron": "^35.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
